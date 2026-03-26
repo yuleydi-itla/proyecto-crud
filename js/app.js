@@ -1,3 +1,4 @@
+// feature/user-crud: operaciones CRUD completas para gestión de usuarios
 let usuarios = JSON.parse(localStorage.getItem("usuarios")) || [];
 let editandoIndex = null;
 
@@ -38,11 +39,24 @@ function limpiarFormulario() {
     document.getElementById("fecha").value = "";
 }
 
-function renderTabla() {
+function buscarUsuario(termino) {
+    return usuarios.filter(u =>
+        u.nombre.toLowerCase().includes(termino.toLowerCase()) ||
+        u.email.toLowerCase().includes(termino.toLowerCase())
+    );
+}
+
+function renderTabla(lista = usuarios) {
     const tbody = document.getElementById("tabla-usuarios");
     tbody.innerHTML = "";
 
-    usuarios.forEach((usuario, index) => {
+    if (lista.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="4" style="text-align:center; color: var(--text-muted); padding: 24px;">No hay usuarios registrados.</td></tr>`;
+        actualizarStats();
+        return;
+    }
+
+    lista.forEach((usuario, index) => {
         const fila = document.createElement("tr");
         fila.innerHTML = `
             <td>${usuario.nombre}</td>
