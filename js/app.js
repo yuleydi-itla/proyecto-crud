@@ -55,6 +55,7 @@ function renderTabla() {
         `;
         tbody.appendChild(fila);
     });
+    actualizarStats();
 }
 
 function editarUsuario(index) {
@@ -71,6 +72,10 @@ function eliminarUsuario(index) {
         guardarEnStorage();
         renderTabla();
     }
+}
+
+function actualizarStats() {
+    document.getElementById("total-usuarios").textContent = usuarios.length;
 }
 
 window.onload = function () {
