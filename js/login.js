@@ -1,3 +1,4 @@
+// feature/login-form: formulario de inicio de sesión con validación
 const USUARIO_VALIDO = "admin";
 const PASSWORD_VALIDO = "1234";
 
