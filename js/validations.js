@@ -1,5 +1,4 @@
 // feature/validate-user-input: validaciones de entrada del formulario de usuarios
-// hotfix/fix-date-format: corrección en el formato de fecha
 
 function validarEmail(email) {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
