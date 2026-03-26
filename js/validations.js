@@ -25,10 +25,20 @@ function validarCamposUsuario(nombre, email, fecha) {
     if (fecha.trim() === "") {
         return "La fecha es obligatoria.";
     }
+    if (!validarFecha(fecha)) {
+        return "La fecha no es válida.";
+    }
     return null;
+}
+
+function validarFecha(fecha) {
+    const hoy = new Date();
+    const fechaIngresada = new Date(fecha);
+    return fechaIngresada <= hoy;
 }
 
 function formatearFecha(fecha) {
     const partes = fecha.split("-");
-    return `${partes[2]}/${partes[1]}/${partes[0]}`;
+    if (partes.length !== 3) return fecha;
+    return `${partes[2].padStart(2, "0")}/${partes[1].padStart(2, "0")}/${partes[0]}`;
 }
